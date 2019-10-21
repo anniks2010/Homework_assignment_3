@@ -8,21 +8,20 @@ namespace Homework_assignment_3
 
 
         {
-            Start:
             Console.WriteLine("What is the temperature out side?");
             float userNumber = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Is it in Fahrenheit (F) or Celsius (°C) scale?");
             string userAnswer = Console.ReadLine().ToLower();
 
-            if (userAnswer== "fahrenheit")
+            if (userAnswer == "fahrenheit" || userAnswer == "f")
             {
                 Console.WriteLine("Would you like to convert it to Celsius scale, Y/N?");
                 string userchoise = Console.ReadLine().ToUpper();
-                if(userchoise== "Y")
+                if (userchoise == "Y")
                 {
-                    float celsiusCalculations = (float)(Math.Round((double)((userNumber - 32) * 5 / 9),2));
-                    Console.WriteLine($"({userNumber} - 32) x 5 / 9 = {celsiusCalculations} °C");
+                    GetCelsius(userNumber);
+
                 }
                 else
                 {
@@ -35,8 +34,8 @@ namespace Homework_assignment_3
                 string userChoise2 = Console.ReadLine().ToUpper();
                 if (userChoise2 == "Y")
                 {
-                    float fahrenheitCalculations = (float)(Math.Round((double)((userNumber * 9) / 5 + 32),2));
-                    Console.WriteLine($"({userNumber} x 9) / 5 + 32 = {fahrenheitCalculations} F");
+                    GetFahrenheit(userNumber);
+
                 }
                 else
                 {
@@ -44,12 +43,20 @@ namespace Homework_assignment_3
                 }
             }
 
-            goto Start;
-
-
-
 
             Console.ReadLine();
         }
+        public static void GetFahrenheit(float celsiusTemperature)
+        {
+            float fahrenheitCalculations = (float)(Math.Round((double)((celsiusTemperature * 9) / 5 + 32), 2));
+            Console.WriteLine($"Temperature is {fahrenheitCalculations} F.");
+        }
+        public static void GetCelsius(float fahrenheitTemperature)
+        {
+            float celsiusCalculations = (float)(Math.Round((double)((fahrenheitTemperature - 32) * 5 / 9), 2));
+            Console.WriteLine($"Temperature is {celsiusCalculations} °C.");
+        }
+
+
     }
 }
